@@ -4,7 +4,7 @@ description = "WoW addon development: 9,000+ WoW API stubs, event payload typing
 version = "0.1.0"
 schema_version = 1
 authors = ["TradeSkillMaster"]
-repository = "https://github.com/TradeSkillMaster/wowlua-ls"
+repository = "https://github.com/TradeSkillMaster/wowlua-ls-zed"
 
 [language_servers.wowlua-ls]
 name = "WoW Lua LS"

@@ -6,12 +6,13 @@ Connects [Zed](https://zed.dev) to the [wowlua_ls](https://github.com/TradeSkill
 
 All features come from the `wowlua_ls` language server:
 
-- 9,000+ WoW API stubs built in (retail, classic, classic era)
+- 9,000+ WoW API stubs built in (retail, classic, classic era, WoW Forever)
 - Event handler typing with per-event payload params
 - XML frame scanning for frame definitions, virtual templates, and mixins
 - TOC file support - hover, completions, go-to-definition, and diagnostics
 - Metatable inference, correlated narrowing, mixin and template support
 - Flavor filtering - warns on APIs unavailable in your target game version
+- Secret values (retail 12.x) - flags comparisons, arithmetic, and other operations that error on secret API results
 - 80+ diagnostics for type safety, nil checking, annotation correctness, and WoW-specific checks
 - Diagnostic plugins for project-specific conventions
 - Powerful generics, builder patterns, signature help with overload resolution
@@ -121,17 +122,7 @@ The `builtinConstant` rule colors `true`/`false`/`nil` inside `expression<>` str
 Build the extension locally:
 
 ```bash
-cd editors/zed
 cargo build --target wasm32-wasip2 --release
 ```
 
-Then install it from the extensions view with **Install Dev Extension**, pointing at this directory. Zed rebuilds the crate itself, so the manual build above is only useful for a quick compile check. `zed --foreground` surfaces the extension's stdout/stderr and INFO-level logs.
-
-The crate is excluded from the repository's Cargo workspace (it compiles for `wasm32-wasip2`) and pins the `stable` toolchain in `rust-toolchain.toml` rather than inheriting the workspace's pinned compiler.
-
-### Publishing
-
-Extensions are published from [zed-industries/extensions](https://github.com/zed-industries/extensions):
-
-1. Bump `version` in `extension.toml` (the extension's own version - it is independent of the language server version, since the server binary is resolved at runtime).
-2. Open a PR against that repository updating this extension's `extensions.toml` entry, which points at this repo as a submodule with `path = "editors/zed"`.
+Then install it from the extensions view with **Install Dev Extension**, pointing at your checkout of this repository. Zed rebuilds the crate itself, so the manual build above is only useful for a quick compile check. `zed --foreground` surfaces the extension's stdout/stderr and INFO-level logs.
